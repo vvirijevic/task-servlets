@@ -35,7 +35,7 @@ public class LoginServlet extends HttpServlet{
 		if(found) {
 			req.getRequestDispatcher("/glavna.jsp").forward(req, resp);
 		} else {
-			req.getRequestDispatcher("/index.jsp");
+			req.getRequestDispatcher("/error.jsp").forward(req, resp);;
 		}
 	}
 }
