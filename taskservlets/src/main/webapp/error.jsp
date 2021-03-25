@@ -8,6 +8,7 @@
 <title>Error</title>
 </head>
 <body>
- 	Invalid user
+ 	<p>INVALID USER!</p>
+ 	<a href="index.jsp">Back</a>
 </body>
 </html>
