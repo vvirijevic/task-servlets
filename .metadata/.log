@@ -4649,3 +4649,6 @@ Stack Trace
 
 !ENTRY org.eclipse.ui.monitoring 2 0 2021-03-25 09:39:09.518
 !MESSAGE UI freeze of 0.70s at 09:39:08.814
+
+!ENTRY org.eclipse.ui.monitoring 4 0 2021-03-25 10:51:18.588
+!MESSAGE UI freeze of 1.1s at 10:51:17.512
