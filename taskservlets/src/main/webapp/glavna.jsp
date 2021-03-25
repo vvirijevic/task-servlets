@@ -79,7 +79,7 @@
 					<td>${m.naziv}</td>
 					<td>${m.adresa}</td>
 					<td>${m.grad.PTT}</td>
-					<c:url value="/cityservlet" var="urlDelete">
+					<c:url value="/manufservlet" var="urlDelete">
 						<c:param name="index" value="${loop.index}"></c:param>
 					</c:url>
 					<td>
@@ -138,7 +138,7 @@
 					<td>${p.mernaJedinica}</td>
 					<td>${p.valuta}</td>
 					<td>${p.proizvodjac.naziv}</td>
-					<c:url value="/cityservlet" var="urlDelete">
+					<c:url value="/productservlet" var="urlDelete">
 						<c:param name="index" value="${loop.index}"></c:param>
 					</c:url>
 					<td>

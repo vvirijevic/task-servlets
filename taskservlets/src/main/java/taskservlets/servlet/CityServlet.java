@@ -35,9 +35,8 @@ public class CityServlet extends HttpServlet{
 		String indexParam = req.getParameter("index");
 		@SuppressWarnings("unchecked")
 		List<City> list = (List<City>) req.getServletContext().getAttribute("cities");
-		System.out.println(list);
 		list.remove(Integer.parseInt(indexParam));
-		req.getRequestDispatcher("/cityservlet").forward(req, resp);
+		req.getRequestDispatcher("/glavna.jsp").forward(req, resp);
 	}
 	
 	protected void saveCity(City c, HttpServletRequest req) {

@@ -36,6 +36,10 @@ public class ProductServlet extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+		String indexParam = req.getParameter("index");
+		@SuppressWarnings("unchecked")
+		List<Product> products = (List<Product>) req.getServletContext().getAttribute("products");
+		products.remove(Integer.parseInt(indexParam));
+		req.getRequestDispatcher("/glavna.jsp").forward(req, resp);
 	}
 }

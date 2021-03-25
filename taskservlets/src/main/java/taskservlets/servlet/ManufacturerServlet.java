@@ -15,7 +15,11 @@ import taskservlets.model.Manufacturer;
 public class ManufacturerServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+		String indexParam = req.getParameter("index");
+		@SuppressWarnings("unchecked")
+		List<Manufacturer> manufacturers = (List<Manufacturer>) req.getServletContext().getAttribute("manufacturers");
+		manufacturers.remove(Integer.parseInt(indexParam));
+		req.getRequestDispatcher("/glavna.jsp").forward(req, resp);
 	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
