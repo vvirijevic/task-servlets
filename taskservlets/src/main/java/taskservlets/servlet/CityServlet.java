@@ -37,7 +37,7 @@ public class CityServlet extends HttpServlet{
 		List<City> list = (List<City>) req.getServletContext().getAttribute("cities");
 		System.out.println(list);
 		list.remove(Integer.parseInt(indexParam));
-		req.getRequestDispatcher("/cityservlet?link=cities").forward(req, resp);
+		req.getRequestDispatcher("/cityservlet").forward(req, resp);
 	}
 	
 	protected void saveCity(City c, HttpServletRequest req) {
