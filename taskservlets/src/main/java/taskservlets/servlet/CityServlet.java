@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import taskservlets.model.City;
+import taskservlets.model.Manufacturer;
 
 @WebServlet(urlPatterns="/cityservlet")
 public class CityServlet extends HttpServlet{
@@ -35,8 +36,18 @@ public class CityServlet extends HttpServlet{
 		String indexParam = req.getParameter("index");
 		@SuppressWarnings("unchecked")
 		List<City> list = (List<City>) req.getServletContext().getAttribute("cities");
-		list.remove(Integer.parseInt(indexParam));
-		req.getRequestDispatcher("/glavna.jsp").forward(req, resp);
+		@SuppressWarnings("unused")
+		List<Manufacturer> manufacturers = (List<Manufacturer>) req.getServletContext().getAttribute("manufacturers");
+		for (Manufacturer m : manufacturers) {
+			if(m.getGrad().getPTT() == list.get(Integer.parseInt(indexParam)).getPTT()) {
+				req.setAttribute("message", "Can't delete city that already contains manufacturer in Manufacturer Table");
+				req.getRequestDispatcher("/errorform.jsp").forward(req, resp);
+			} else {
+				list.remove(Integer.parseInt(indexParam));
+				req.getRequestDispatcher("/glavna.jsp").forward(req, resp);
+			}
+		}
+		
 	}
 	
 	protected void saveCity(City c, HttpServletRequest req) {

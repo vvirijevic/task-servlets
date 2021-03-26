@@ -11,15 +11,28 @@ import javax.servlet.http.HttpServletResponse;
 
 import taskservlets.model.City;
 import taskservlets.model.Manufacturer;
+import taskservlets.model.Product;
 @WebServlet("/manufservlet")
 public class ManufacturerServlet extends HttpServlet{
+
+	private static final long serialVersionUID = 1L;
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String indexParam = req.getParameter("index");
 		@SuppressWarnings("unchecked")
 		List<Manufacturer> manufacturers = (List<Manufacturer>) req.getServletContext().getAttribute("manufacturers");
-		manufacturers.remove(Integer.parseInt(indexParam));
-		req.getRequestDispatcher("/glavna.jsp").forward(req, resp);
+		@SuppressWarnings("unchecked")
+		List<Product> products = (List<Product>) req.getServletContext().getAttribute("products");
+		for (Product p : products) {
+			if(p.getProizvodjac().getNaziv().equals(manufacturers.get(Integer.parseInt(indexParam)).getNaziv())) {
+				req.setAttribute("message", "Can't delete manufacturer that already contains products in Product Table");
+				req.getRequestDispatcher("/errorform.jsp").forward(req, resp);
+			} else {
+				manufacturers.remove(Integer.parseInt(indexParam));
+				req.getRequestDispatcher("/glavna.jsp").forward(req, resp);
+			}
+		}
+		
 	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

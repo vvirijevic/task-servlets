@@ -26,12 +26,17 @@ public class ProductServlet extends HttpServlet {
 		String valuta = req.getParameter("valuta");
 		String mernaJedinica = req.getParameter("mernaJedinica");
 		String proizvodjac = req.getParameter("proizvodjac");
+		if(poreskaStopa < 0 || poreskaStopa > 100) {
+			req.setAttribute("message", "Tax out of bounds!");
+			req.getRequestDispatcher("/errorform.jsp").forward(req, resp);
+		} else {
 		
 		Product p = new Product(sifra, naziv, cena, poreskaStopa, valuta, mernaJedinica, new Manufacturer(0, 0, proizvodjac, "", null));
 		products.add(p);
 		
 		req.setAttribute("products", products);
 		req.getRequestDispatcher("/glavna.jsp").forward(req, resp);
+		}
 	}
 	
 	@Override

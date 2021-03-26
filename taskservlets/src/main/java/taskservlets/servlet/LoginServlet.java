@@ -35,6 +35,7 @@ public class LoginServlet extends HttpServlet{
 		if(found) {
 			req.getRequestDispatcher("/glavna.jsp").forward(req, resp);
 		} else {
+			req.setAttribute("message", "Invalid User");
 			req.getRequestDispatcher("/error.jsp").forward(req, resp);;
 		}
 	}
