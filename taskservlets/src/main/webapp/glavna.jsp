@@ -38,6 +38,12 @@
 					<td>
 						<a href="${urlDelete}">delete</a href>
 					</td>
+					<c:url value="/updatecity" var="urlUpdate">
+						<c:param name="index" value="${loop.index}"></c:param>
+					</c:url>
+					<td>
+						<a href="${urlUpdate}">update</a href>
+					</td>
 				</tr>
 			</c:forEach>
 			</table>
@@ -84,6 +90,12 @@
 					</c:url>
 					<td>
 						<a href="${urlDelete}">delete</a href>
+					</td>
+					<c:url value="/manufservlet" var="urlUpdate">
+						<c:param name="index" value="${loop.index}"></c:param>
+					</c:url>
+					<td>
+						<a href="${urlUpdate}">update</a href>
 					</td>
 				</tr>
 			</c:forEach>
@@ -143,6 +155,12 @@
 					</c:url>
 					<td>
 						<a href="${urlDelete}">delete</a href>
+					</td>
+					<c:url value="/manufservlet" var="urlUpdate">
+						<c:param name="index" value="${loop.index}"></c:param>
+					</c:url>
+					<td>
+						<a href="${urlUpdate}">update</a href>
 					</td>
 				</tr>
 			</c:forEach>

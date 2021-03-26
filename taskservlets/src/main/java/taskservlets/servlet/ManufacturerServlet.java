@@ -23,14 +23,12 @@ public class ManufacturerServlet extends HttpServlet{
 		List<Manufacturer> manufacturers = (List<Manufacturer>) req.getServletContext().getAttribute("manufacturers");
 		@SuppressWarnings("unchecked")
 		List<Product> products = (List<Product>) req.getServletContext().getAttribute("products");
-		for (Product p : products) {
-			if(p.getProizvodjac().getNaziv().equals(manufacturers.get(Integer.parseInt(indexParam)).getNaziv())) {
-				req.setAttribute("message", "Can't delete manufacturer that already contains products in Product Table");
-				req.getRequestDispatcher("/errorform.jsp").forward(req, resp);
-			} else {
-				manufacturers.remove(Integer.parseInt(indexParam));
-				req.getRequestDispatcher("/glavna.jsp").forward(req, resp);
-			}
+		if(existInList(manufacturers, products)) {
+			req.setAttribute("message", "Can't delete manufacturer that already contains products in Product Table");
+			req.getRequestDispatcher("/errorform.jsp").forward(req, resp);
+		} else {
+			manufacturers.remove(Integer.parseInt(indexParam));
+			req.getRequestDispatcher("/glavna.jsp").forward(req, resp);
 		}
 		
 	}
@@ -48,5 +46,16 @@ public class ManufacturerServlet extends HttpServlet{
 		manufacturers.add(m);
 		req.setAttribute("manufacturers", manufacturers);
 		req.getRequestDispatcher("/glavna.jsp").forward(req, resp);
+	}
+	
+	protected boolean existInList(List<Manufacturer> manufacturers, List<Product> products) {
+		for (int i = 0; i < manufacturers.size(); i++) {
+			for (int j = 0; j < products.size(); j++) {
+				if(products.get(j).getProizvodjac().getNaziv().equals(manufacturers.get(i).getNaziv())) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 }
